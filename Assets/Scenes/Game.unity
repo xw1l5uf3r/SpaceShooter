@@ -1084,6 +1084,11 @@ MonoBehaviour:
   totalScore: 0
   hpText: {fileID: 705163939}
   scoreText: {fileID: 292983684}
+  bulletPositions:
+  - -1
+  - -0.5
+  - 0.5
+  - 1
 --- !u!1 &863255589
 GameObject:
   m_ObjectHideFlags: 0
@@ -6413,6 +6418,7 @@ MonoBehaviour:
   spawnRate: 2
   enemyPrefab: {fileID: 766312184514640531, guid: 09f3f32e8e8aa914185c2223a0f54946, type: 3}
   playerSpaceCraft: {fileID: 780679445}
+  heartPrefab: {fileID: 6522661470341002380, guid: 9dd937402fc5a554d8615a632c0f48b2, type: 3}
 --- !u!4 &1938386927
 Transform:
   m_ObjectHideFlags: 0

@@ -42,11 +42,9 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    void Start()
+    public void Shoot(float xPosition)
     {
         rb = GetComponent<Rigidbody>();
-        // доп. условия, для того чтобы понять каким снарядам нужно двигаться по диагонали
-        rb.linearVelocity = new Vector3(transform.rotation.x == 0f ? 0f : (transform.rotation.x > 0 ? speed / 2f : -(speed / 2f)), 0f, reverseZ ? -(speed) : speed);
+        rb.linearVelocity = new Vector3(speed * xPosition, 0f, reverseZ ? -(speed) : speed);
     }
 }

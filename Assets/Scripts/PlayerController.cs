@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour
     private float timer = 0f;
     private int oneEnemyScore = 0;
 
+    [SerializeField]
+    private float[] bulletPositions = { -1f, -0.5f, 0.5f, 1f };
+
+
     void Start()
     {
         hpText.text = maxHealth.ToString();
@@ -80,6 +84,16 @@ public class PlayerController : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
+        else if (other.CompareTag("Heart"))
+        {
+            Heart heart = other.GetComponent<Heart>();
+            if (heart != null) 
+            {
+                maxHealth += heart.hpPerHeart;
+                hpText.text = maxHealth.ToString();
+            }
+            Destroy(other.gameObject);
+        }
     }
     private void Lose()
     {
@@ -120,11 +134,15 @@ public class PlayerController : MonoBehaviour
     }
     void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject straightBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        straightBullet.GetComponent<Bullet>().Shoot(0f);
         if (oneEnemyScore != 0 && totalScore > oneEnemyScore * 10) // 2 дополнительных снаряда при успешном уничтожении 10 противников
         {
-            Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(1f, 0f, 0f));
-            Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(-1f, 0f, 0f));
+            foreach (var bulletPosition in bulletPositions)
+            {
+                GameObject diagonalBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+                diagonalBullet.GetComponent<Bullet>().Shoot(bulletPosition);
+            }
         }
     }
 }

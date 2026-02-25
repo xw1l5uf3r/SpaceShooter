@@ -12,26 +12,39 @@ public class SpawnManager : MonoBehaviour
     private GameObject playerSpaceCraft;
     private int lastCheckedScore = 0;
 
+    [SerializeField]
+    private GameObject heartPrefab;
+
     private float lastSpawnX;
-    private float timer = 0f;
     private int enemyCount = 1;
+
+    bool halfDone = false;
+    private float timer = 0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
 
+        if (!halfDone && timer >= spawnRate * 0.5f)
+        {
+            SpawnHeart();
+            halfDone = true;
+        }
+
         if (timer >= spawnRate)
         {
             Spawner();
+
             for (int i = 0; i < enemyCount; i++)
                 Spawn();
 
             timer = 0f;
+            halfDone = false; // סבנאסûגאול פכאד
         }
     }
 
@@ -51,7 +64,14 @@ public class SpawnManager : MonoBehaviour
             lastCheckedScore = playerSpaceCraft.GetComponent<PlayerController>().totalScore;
         }
     }
+    void SpawnHeart()
+    {
+        if (Random.Range(0, 10) != 5)
+            return;
 
+        Vector3 spawnPos = new Vector3(Random.Range(-30f, 30f), 11.5f, 75f);
+        Instantiate(heartPrefab, spawnPos, heartPrefab.transform.rotation);
+    }
     void Spawn()
     {
         float newX;

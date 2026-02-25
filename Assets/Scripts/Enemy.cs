@@ -60,6 +60,7 @@ public class Enemy : MonoBehaviour
     }
     void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject enemyBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        enemyBullet.GetComponent<Bullet>().Shoot(0f);
     }
 }
