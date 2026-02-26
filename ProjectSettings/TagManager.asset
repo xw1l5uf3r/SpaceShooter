@@ -9,6 +9,7 @@ TagManager:
   - EnemyBullet
   - Wall
   - Heart
+  - Shotgun
   layers:
   - Default
   - TransparentFX

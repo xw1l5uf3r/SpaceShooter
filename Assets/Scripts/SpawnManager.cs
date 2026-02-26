@@ -15,13 +15,15 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject heartPrefab;
 
+    [SerializeField]
+    private GameObject shotgunPrefab;
+
     private float lastSpawnX;
     private int enemyCount = 1;
 
     bool halfDone = false;
     private float timer = 0f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
     }
@@ -56,13 +58,16 @@ public class SpawnManager : MonoBehaviour
             {
                 spawnRate -= 0.1f; // постепенное увелечение частоты спавна противников
                 // усиление частоты огня
-                playerSpaceCraft.GetComponent<PlayerController>().fireRate -= (playerSpaceCraft.GetComponent<PlayerController>().fireRate / 10f);
+                playerSpaceCraft.GetComponent<PlayerController>().currentGun.GetComponent<StandartGun>().fireRate -= (playerSpaceCraft.GetComponent<PlayerController>().currentGun.GetComponent<StandartGun>().fireRate / 10f);
             }
             else if (enemyCount < 3)
                 enemyCount++; // увеличение числа противников, максимум 3
             
             lastCheckedScore = playerSpaceCraft.GetComponent<PlayerController>().totalScore;
         }
+            GameObject shotgun = Instantiate(shotgunPrefab, new Vector3(0f, 7f, 75f), Quaternion.identity);
+            shotgun.GetComponent<Rigidbody>().linearVelocity = new Vector3(0f, 0f, -35f);
+        
     }
     void SpawnHeart()
     {

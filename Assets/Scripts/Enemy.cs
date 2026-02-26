@@ -4,7 +4,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float speed = 5f;
-    [SerializeField]
+
     public int health = 5;
 
     public int collisionDamage = 5; // урон получаемый игроком при столкновении
