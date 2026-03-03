@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 1f;
+    public float speed = 1f;
     [SerializeField]
     private GameObject hitEffectPrefab;
 

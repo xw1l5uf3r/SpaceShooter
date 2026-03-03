@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private TextMeshProUGUI scoreText;
     [SerializeField]
     private GameObject standartGunPrefab;
+    [SerializeField]
+    private GameObject shotgunPrefab;
 
     public Transform firePoint;
 
@@ -94,9 +96,13 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("Shotgun"))
         {
-            Shotgun tempGun = new Shotgun(currentGun);
-            Destroy(currentGun);
-            currentGun = tempGun;
+            if(currentGun.GetType() != typeof(Shotgun))
+            {
+                Destroy(currentGun);
+                currentGun = Instantiate(shotgunPrefab, firePoint.position, Quaternion.identity, transform).GetComponent<Shotgun>();
+                //currentGun.myParent = GetComponent<PlayerController>();
+            }
+            Destroy(other.gameObject);
         }
     }
     private void Lose()

@@ -1081,6 +1081,7 @@ MonoBehaviour:
   hpText: {fileID: 705163939}
   scoreText: {fileID: 292983684}
   standartGunPrefab: {fileID: 2212060848145684701, guid: 38a212bee1715b145806eb7c4d3a4b48, type: 3}
+  shotgunPrefab: {fileID: 6766277577412148819, guid: 46291ef107024ae4189f7120b63f17cf, type: 3}
   firePoint: {fileID: 493950246}
 --- !u!1 &863255589
 GameObject:
@@ -6322,12 +6323,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

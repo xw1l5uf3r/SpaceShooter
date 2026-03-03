@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class StandartGun : MonoBehaviour
 {
+    [NonSerialized]
     public PlayerController myParent;
 
     public GameObject bulletPrefab;

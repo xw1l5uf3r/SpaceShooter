@@ -1,22 +1,23 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Shotgun : StandartGun
 {
-    protected float[] bulletPositions = { -1f, -0.5f, 0f, 0.5f, 1f };
-
-    public Shotgun(StandartGun obj)
-    {
-        this.bulletPrefab = obj.bulletPrefab;
-        this.myParent = obj.myParent;
-        this.oneEnemyScore = obj.oneEnemyScore;
-    }
-    // Update is called once per frame
+//    public Shotgun(StandartGun obj)
+//    {
+//        this.bulletPrefab = obj.bulletPrefab;
+//        this.myParent = obj.myParent;
+//        this.oneEnemyScore = obj.oneEnemyScore;
+//    }
     public override void Shoot()
     {
-        foreach (var bulletPosition in bulletPositions)
+        float[] bulletPositions = { -1f, -0.75f, -0.5f, -0.25f, 0f, 0.25f, 0.5f, 0.75f, 1f };
+
+        for(int i = 1; i < bulletPositions.Length - 1; i++)
         {
             GameObject diagonalBullet = Instantiate(bulletPrefab, myParent.firePoint.position, Quaternion.identity);
-            diagonalBullet.GetComponent<Bullet>().Shoot(bulletPosition);
+            diagonalBullet.GetComponent<Bullet>().speed *= 2f; 
+            diagonalBullet.GetComponent<Bullet>().Shoot(Random.Range(bulletPositions[i - 1], bulletPositions[i]));
         }
     }
 }

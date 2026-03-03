@@ -65,8 +65,11 @@ public class SpawnManager : MonoBehaviour
             
             lastCheckedScore = playerSpaceCraft.GetComponent<PlayerController>().totalScore;
         }
+        if (playerSpaceCraft.GetComponent<PlayerController>().totalScore >= (enemyPrefab.GetComponent<Enemy>().scoreValue * 10) && playerSpaceCraft.GetComponent<PlayerController>().currentGun.GetComponent<StandartGun>().GetType() != typeof(Shotgun))
+        {
             GameObject shotgun = Instantiate(shotgunPrefab, new Vector3(0f, 7f, 75f), Quaternion.identity);
             shotgun.GetComponent<Rigidbody>().linearVelocity = new Vector3(0f, 0f, -35f);
+        }
         
     }
     void SpawnHeart()
