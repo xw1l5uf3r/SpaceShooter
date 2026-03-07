@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class PlayerController : MonoBehaviour
     [NonSerialized]
     public int totalScore = 0;
 
+    [NonSerialized]
+    public bool isShielded = false;
+
     [SerializeField]
     private TextMeshProUGUI hpText;
     [SerializeField]
@@ -29,6 +33,9 @@ public class PlayerController : MonoBehaviour
     private GameObject standartGunPrefab;
     [SerializeField]
     private GameObject shotgunPrefab;
+
+    [SerializeField]
+    private RawImage shieldIcon;
 
     public Transform firePoint;
 
@@ -39,6 +46,7 @@ public class PlayerController : MonoBehaviour
     {
         hpText.text = maxHealth.ToString();
         currentGun = Instantiate(standartGunPrefab, firePoint.position, Quaternion.identity, transform).GetComponent<StandartGun>();
+        shieldIcon.enabled = false;
     }
 
     public void AddScore(int score)
@@ -57,16 +65,8 @@ public class PlayerController : MonoBehaviour
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
             {
-                maxHealth -= enemy.collisionDamage;
-                enemy.collisionDamage = 0;
-                if (maxHealth <= 0)
-                {
-                    GameData.totalScore = totalScore;
-                    Lose();
-                }
+                GetDamage(enemy.collisionDamage);
                 Destroy(enemy);
-
-                hpText.text = maxHealth.ToString();
             }
         }
         else if (other.CompareTag("EnemyBullet"))
@@ -74,13 +74,7 @@ public class PlayerController : MonoBehaviour
             Bullet bullet = other.GetComponent<Bullet>();
             if (bullet != null)
             {
-                maxHealth -= bullet.damage;
-                if (maxHealth <= 0)
-                {
-                    GameData.totalScore = totalScore;
-                    Lose();
-                }
-                hpText.text = maxHealth.ToString(); 
+                GetDamage(bullet.damage);
             }
             Destroy(other.gameObject);
         }
@@ -104,6 +98,31 @@ public class PlayerController : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
+        else if (other.CompareTag("Shield"))
+        {
+            if(!isShielded)
+            {
+                isShielded = true;
+                shieldIcon.enabled = true;
+            }
+            Destroy(other.gameObject);
+        }
+    }
+    private void GetDamage(int damage)
+    {
+        if (isShielded)
+        {
+            isShielded = false;
+            shieldIcon.enabled = false;
+            return;
+        }
+        maxHealth -= damage;
+        if (maxHealth <= 0)
+        {
+            GameData.totalScore = totalScore;
+            Lose();
+        }
+        hpText.text = maxHealth.ToString();
     }
     private void Lose()
     {

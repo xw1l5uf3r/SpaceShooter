@@ -329,7 +329,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -43.65027}
+  m_AnchoredPosition: {x: 0, y: -43.650146}
   m_SizeDelta: {x: 1080, y: 87.3005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &292983684
@@ -1082,6 +1082,7 @@ MonoBehaviour:
   scoreText: {fileID: 292983684}
   standartGunPrefab: {fileID: 2212060848145684701, guid: 38a212bee1715b145806eb7c4d3a4b48, type: 3}
   shotgunPrefab: {fileID: 6766277577412148819, guid: 46291ef107024ae4189f7120b63f17cf, type: 3}
+  shieldIcon: {fileID: 1010008284}
   firePoint: {fileID: 493950246}
 --- !u!1 &863255589
 GameObject:
@@ -1302,6 +1303,78 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1010008282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1010008283}
+  - component: {fileID: 1010008285}
+  - component: {fileID: 1010008284}
+  m_Layer: 5
+  m_Name: ShieldIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1010008283
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010008282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1911013393}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -50, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1010008284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010008282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: 13c240057c002ab40bd9fef9f40f892e, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1010008285
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010008282}
+  m_CullTransparentMesh: 1
 --- !u!1 &1495361428
 GameObject:
   m_ObjectHideFlags: 0
@@ -6373,6 +6446,7 @@ RectTransform:
   - {fileID: 705163938}
   - {fileID: 190786314}
   - {fileID: 292983683}
+  - {fileID: 1010008283}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6414,6 +6488,7 @@ MonoBehaviour:
   playerSpaceCraft: {fileID: 780679445}
   heartPrefab: {fileID: 6522661470341002380, guid: 9dd937402fc5a554d8615a632c0f48b2, type: 3}
   shotgunPrefab: {fileID: 5835879604185791909, guid: 4e5dcb21712f0c2439c0c44b9056dd59, type: 3}
+  shieldPrefab: {fileID: 7196992807532454855, guid: e132c1ab34b4f0f40a2e466915ef5a3a, type: 3}
 --- !u!4 &1938386927
 Transform:
   m_ObjectHideFlags: 0

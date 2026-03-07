@@ -18,6 +18,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject shotgunPrefab;
 
+    [SerializeField]
+    private GameObject shieldPrefab;
+
     private float lastSpawnX;
     private int enemyCount = 1;
 
@@ -35,6 +38,7 @@ public class SpawnManager : MonoBehaviour
         if (!halfDone && timer >= spawnRate * 0.5f)
         {
             SpawnHeart();
+            SpawnShield();
             halfDone = true;
         }
 
@@ -79,6 +83,17 @@ public class SpawnManager : MonoBehaviour
 
         Vector3 spawnPos = new Vector3(Random.Range(-30f, 30f), 11.5f, 75f);
         Instantiate(heartPrefab, spawnPos, heartPrefab.transform.rotation);
+    }
+    void SpawnShield()
+    {
+        if (playerSpaceCraft.GetComponent<PlayerController>().isShielded)
+            return;
+
+        if (Random.Range(0, 10) != 5)
+            return;
+
+        Vector3 spawnPos = new Vector3(Random.Range(-30f, 30f), 11.5f, 75f);
+        Instantiate(shieldPrefab, spawnPos, shieldPrefab.transform.rotation);
     }
     void Spawn()
     {
